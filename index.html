@@ -4,17 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- title and fev icon -->
-    <title>GitHub Issues Tracker</title>
+    <title>GitHub issues Tracker</title>
     <link rel="shortcut icon" href="./assets/github-logo.png" type="image/x-icon" />
 
-    <!-- font awesome cdn -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
       referrerpolicy="no-referrer"
     />
-    <!-- font integration -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,89 +20,69 @@
       rel="stylesheet"
     />
 
-    <!-- tailwind daisyui -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <style type="text/tailwindcss">
-      @theme {
-        --font-geist: "Geist", sans-serif;
-      }
-
       * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Geist", sans-serif;
+        font-family: var(--font-geist);
       }
     </style>
-
-    <link rel="stylesheet" href="./style/style.css" />
   </head>
 
-  <body>
-    <header class="w-full bg-base-100 shadow-sm sticky top-0 z-50">
-  <div class="navbar container mx-auto px-2 md:px-4">
-    <div class="flex-1">
-      <div class="flex items-center gap-2 md:gap-3 select-none">
-        <img class="w-10 md:w-12" src="./assets/github-logo.png" alt="Logo" />
-        <p class="text-xl md:text-2xl font-bold tracking-tight text-base-content truncate">
-          GitHub <span class="hidden sm:inline">Tracker</span>
-        </p>
+  <body class="min-h-screen bg-base-200 mx-auto">
+    <div class="max-w-md w-full mx-auto mt-3">
+      <div class="logo mx-auto text-center p-15 bg-base-100 rounded-t-2xl">
+        <img class="w-[100px] h-[100px] mx-auto" src="./assets/github-logo.png" alt="logo" />
+        <p class="text-2xl font-semibold text-[#1F2937] mt-4">GitHub Issues Tracker</p>
+        <p class="text-sm font-normal text-[#64748B]">Sign in to manage your issues</p>
+      </div>
+
+      <div class="form">
+        <div class="card bg-base-100 w-full mx-auto shadow-xl rounded-t-none">
+          <div class="card-body">
+            <fieldset class="fieldset">
+              <label class="label text-[16px] font-medium text-[#1F2937]">Username</label>
+              <input
+                id="input-username"
+                type="username"
+                class="input w-full bg-base-200"
+                value="admin"
+                placeholder="Enter Username"
+              />
+
+              <label class="label text-[16px] font-medium text-[#1F2937] mt-2">Password</label>
+              <input
+                id="input-password"
+                type="password"
+                class="input w-full bg-base-200"
+                value="admin123"
+                placeholder="Enter Password"
+              />
+
+              <button id="signIn-btn" class="btn btn-primary mt-6 w-full text-white">
+                Sign In
+              </button>
+            </fieldset>
+          </div>
+        </div>
+
+        <div class="card bg-base-100 w-full mx-auto shadow-xl rounded-t-none p-4">
+          <div class="flex items-center gap-3 my-2">
+            <div class="flex-1 h-[1px] bg-gray-300"></div>
+            <p class="text-sm text-gray-500">OR</p>
+            <div class="flex-1 h-[1px] bg-gray-300"></div>
+          </div>
+
+          <div class="flex flex-col items-center mt-2">
+            <p>Demo Credentials:</p>
+            <p>Username: admin</p>
+            <p>Password: admin123</p>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="flex items-center gap-2 md:gap-3">
-      <div class="form-control">
-        <label class="input input-bordered flex items-center gap-2 h-10 px-2 md:px-4">
-          <i class="fa-solid fa-magnifying-glass text-[14px] text-gray-500"></i>
-          <input
-            type="text"
-            class="grow focus:outline-none text-sm w-20 sm:w-24 md:w-auto"
-            placeholder="Search..."
-          />
-        </label>
-      </div>
-
-      <button class="btn btn-primary shadow-md">
-        <i class="fa-solid fa-plus text-xs"></i>
-        <span>New Issue</span>
-      </button>
-    </div>
-  </div>
-</header>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
+    <script src="./script/signIn.js"></script>
   </body>
 </html>
