@@ -4,10 +4,11 @@ const loader = document.getElementById("loader");
 const issueModal = document.getElementById("issue_modal");
 const modalContent = document.getElementById("modal-content");
 
+// ইস্যু কাউন্ট বারের ডানপাশে ডট দেখানোর জন্য একটি কন্টেইনার তৈরি (HTML এ না থাকলে এটি সাহায্য করবে)
+const statusIndicatorContainer = document.querySelector(".flex.items-center.gap-4");
 
 async function loadIssues(filter = 'all') {
     try {
-       
         const currentHeight = issuesContainer.offsetHeight;
         if (currentHeight > 0) {
             issuesContainer.style.minHeight = `${currentHeight}px`;
@@ -20,7 +21,6 @@ async function loadIssues(filter = 'all') {
         const responseData = await res.json();
         let issues = responseData.data || responseData;
 
-        
         if (filter !== 'all') {
             issues = issues.filter(issue => issue.status?.toLowerCase() === filter);
         }
@@ -30,7 +30,11 @@ async function loadIssues(filter = 'all') {
         if (Array.isArray(issues)) {
             issues.forEach(issue => {
                 const isStatusOpen = issue.status?.toLowerCase() === "open";
+                
+                // ১. কার্ডের জন্য PNG ইমেজ পাথ
                 const statusIcon = isStatusOpen ? "./assets/Open-Status.png" : "./assets/Closed-Status.png";
+                
+                // ২. কার্ডের টপ বর্ডার কালার
                 const borderColor = isStatusOpen ? "border-t-emerald-500" : "border-t-[#A855F7]";
                 const bgIconColor = isStatusOpen ? "bg-emerald-50" : "bg-purple-50";
 
@@ -82,11 +86,9 @@ async function loadIssues(filter = 'all') {
         console.error("Error:", error);
     } finally {
         loader.style.display = "none";
-      
         issuesContainer.style.minHeight = "auto";
     }
 }
-
 
 async function fetchSingleIssue(id) {
     try {
@@ -98,14 +100,18 @@ async function fetchSingleIssue(id) {
         const issue = responseData.data;
 
         const date = new Date(issue.createdAt).toLocaleDateString('en-GB');
+        const isStatusOpen = issue.status?.toLowerCase() === "open";
+        
+        // মডালের স্ট্যাটাস ব্যাজ কালার
+        const badgeBg = isStatusOpen ? "bg-[#00ab66]" : "bg-[#A855F7]";
 
         modalContent.innerHTML = `
             <div class="p-10 relative">
                 <div class="space-y-3">
                     <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">${issue.title}</h2>
                     <div class="flex flex-wrap items-center gap-3 text-sm font-medium text-slate-500">
-                        <span class="bg-[#00ab66] text-white px-4 py-1 rounded-full flex items-center gap-1.5 shadow-sm">
-                            <i class="fa-solid fa-circle-dot"></i> ${issue.status.toUpperCase()}
+                        <span class="${badgeBg} text-white px-4 py-1 rounded-full flex items-center gap-1.5 shadow-sm">
+                            <i class="fa-solid fa-circle-dot text-[10px]"></i> ${issue.status.toUpperCase()}
                         </span>
                         <span>•</span>
                         <span>Category: <b>${issue.category || 'General'}</b></span>
@@ -157,21 +163,15 @@ async function fetchSingleIssue(id) {
     }
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('section:first-of-type button');
 
     buttons.forEach(btn => {
         btn.onclick = () => {
-          
             buttons.forEach(b => {
                 b.className = "btn btn-outline border-gray-200 text-gray-500 hover:bg-gray-50 px-10";
             });
-
-          
             btn.className = "btn bg-[#5800FF] hover:bg-[#4800D6] text-white border-[#5800FF] px-10 shadow-md";
-
-       
             const type = btn.innerText.trim().toLowerCase();
             loadIssues(type);
         };
