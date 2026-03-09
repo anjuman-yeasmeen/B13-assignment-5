@@ -12,7 +12,7 @@ document.getElementById("signIn-btn").addEventListener("click", function () {
 
   if (userName == "admin" && password == "admin123") {
     alert("sign in success");
-    window.location.assign("/main-page.html");
+    window.location.assign("main-page.html");
   } else {
     alert("sign in failed");
     return;
