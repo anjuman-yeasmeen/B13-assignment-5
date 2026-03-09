@@ -27,35 +27,36 @@
     </style>
   </head>
   <body class="bg-base-200">
-    <header class="w-full bg-white shadow-sm sticky top-0 z-50">
-  <div class="navbar container mx-auto px-4 flex flex-wrap gap-3 sm:flex-nowrap">
-    
-    <div class="flex-1 flex items-center justify-start">
-      <div class="flex items-center gap-3 select-none">
-        <img class="w-10" src="./assets/github-logo.png" alt="Logo" />
-        <p class="text-base md:text-xl font-bold tracking-tight text-slate-800">
-          GitHub <span class="hidden sm:inline"> Issues Tracker</span>
-        </p>
-      </div>
+  <header class="w-full bg-white shadow-sm sticky top-0 z-50">
+  <div class="navbar container mx-auto px-4 flex items-center justify-between gap-3">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-2 sm:gap-3 select-none">
+      <img class="w-8 sm:w-10" src="./assets/github-logo.png" alt="Logo" />
+      <p class="text-sm sm:text-base md:text-xl font-bold tracking-tight text-slate-800">
+        GitHub <span class="hidden sm:inline">Issues Tracker</span>
+      </p>
     </div>
 
-    <div class="flex items-center gap-3 w-full sm:w-auto sm:justify-end">
-      <div class="relative w-full sm:w-80">
-        <!-- <i class="fa fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 
-   hidden md:inline-block"></i>
-         -->
+    <!-- Search + Button -->
+    <div class="flex items-center gap-2 sm:gap-3">
+
+      <!-- Search Box -->
+      <div class="relative w-32 sm:w-64 md:w-80">
         <input
           oninput="searchIssue(this.value)"
           type="text"
-          placeholder="Search Issues."
-          class="w-full p-2 md:pl-11 md:pr-4 md:py-3 rounded-xl bg-white border border-gray-200 shadow-sm text-sm text-gray-700 placeholder-gray-400 outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition"
+          placeholder="Search Issues"
+          class="w-full p-2 md:pl-4 md:pr-4 md:py-2 rounded-xl bg-white border border-gray-200 shadow-sm text-xs sm:text-sm text-gray-700 placeholder-gray-400 outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition"
         />
       </div>
 
-      <button class="btn btn-primary bg-[#5800FF] border-none shadow-md text-white px-5">
-        <i class="fa-solid fa-plus text-xs"></i> 
-        <span>New<span class="hidden sm:inline"> Issue</span></span>
+      <!-- New Issue Button -->
+      <button class="btn btn-primary bg-[#5800FF] border-none shadow-md text-white px-3 sm:px-5 text-xs sm:text-sm flex items-center gap-1">
+        <i class="fa-solid fa-plus"></i>
+        <span class="hidden sm:inline">New Issue</span>
       </button>
+
     </div>
 
   </div>
